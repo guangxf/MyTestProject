@@ -54,14 +54,28 @@ namespace TestProject
             //    Console.WriteLine("不会异常");
             //}
 
-            string a = "-100002";
-            int aa = int.Parse(a);
-            Console.WriteLine(aa);
-            string b = "-1003AB";
-            int bb;
-            int.TryParse(b, out bb);
-            Console.WriteLine(bb);
-            Console.WriteLine("成功");
+            //string a = "-100002";
+            //int aa = int.Parse(a);
+            //Console.WriteLine(aa);
+            //string b = "-1003AB";
+            //int bb;
+            //int.TryParse(b, out bb);
+            //Console.WriteLine(bb);
+            //Console.WriteLine("成功");
+
+            Console.WriteLine(DateTime.Now.ToString("HHmm"));
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Task.Factory.StartNew(() =>
+            //    {
+            //        //Random random = new Random();
+            //        byte[] buffer = Guid.NewGuid().ToByteArray();//生成字节数组
+            //        int iRoot = BitConverter.ToInt32(buffer, 0);//利用BitConvert方法把字节数组转换为整数
+            //        Random rdmNum = new Random(iRoot);//以这个生成的整数为种子
+            //        int m = rdmNum.Next(0, 100);
+            //        Console.WriteLine(m);
+            //    });
+            //}
         }
 
 
