@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AlipayOcrService\IdCard.cs" />
     <Compile Include="HelpService\DateClass.cs" />
+    <Compile Include="HelpService\HttpService.cs" />
     <Compile Include="HelpService\SecretService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="StringCompare\StringClass.cs" />
     <Compile Include="TempService\TempTestService.cs" />
     <Compile Include="ViewModel\JsonModel.cs" />
+    <Compile Include="WebApiTest\WebApiGet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

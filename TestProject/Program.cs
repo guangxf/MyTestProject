@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using ServiceStack;
 using TestProject.StringCompare;
 using TestProject.TempService;
 using TestProject.ViewModel;
+using TestProject.WebApiTest;
 
 namespace TestProject
 {
@@ -25,17 +27,139 @@ namespace TestProject
 
         static void Main(string[] args)
         {
-            TestAny();
+            string strread = Console.ReadLine();
+            TestAny(strread);
+            #region 调用
+            //WebApiGet.TestGetReInfo();
+            //TestAny("百科技公司");
+            //TestAny("百度科技公司");
+            //TestAny("百度的科技公司");
+            //TestAny("百度科技有限公司");
+            //TestAny("百度的科技有限公司");
+            //TestAny("百度科技有限责任公司");
+            //TestAny("百度的科技有限责任公司");
+            //TestAny("北京百度科技有限责任公司");
+            //TestAny("北京的百度科技有限责任公司");
+            //TestAny("鄂尔多斯百度科技有限责任公司");
+            //TestAny("鄂尔多斯的百度科技有限责任公司");
+            //TestAny("鄂尔多斯市的百度科技有限责任公司");
+            //TestAny("内蒙鄂尔多斯市百度科技有限责任公司");
+            //TestAny("内蒙古鄂尔多斯市百度科技有限责任公司");
+            //TestAny("内蒙古的鄂尔多斯市百度科技有限责任公司");
+            //TestAny("内蒙古鄂尔多斯市倚天网络百度科技有限责任公司");
+            //TestAny("sunney company relation");
+            //Console.WriteLine(GetStarIdCard(1, "140724195803060119"));
+            //Console.WriteLine(GetStarIdCard(1, "140724195803060"));
+            #endregion
             Console.ReadLine();
         }
 
-        static void TestAny()
+        public static string GetStarIdCard(int idtype, string idcard)
         {
+            StringBuilder newidcard = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(idcard))
+            {
+                return idcard;
+            }
+            if (idcard.Contains("*"))
+            {
+                return idcard;
+            }
+            //如果4个字符以上，加星
+            if (idcard.Length == 18)
+            {
+                newidcard.Append(idcard.Substring(0, idcard.Length - 4))
+                    .Append("**")
+                    .Append(idcard.Substring(idcard.Length - 2, 1))
+                    .Append("*");
+                return newidcard.ToString();
+            }
+            else if (idcard.Length == 15)
+            {
+                newidcard.Append(idcard.Substring(0, idcard.Length - 4))
+                    .Append("***")
+                    .Append(idcard.Substring(idcard.Length - 1, 1));
+                return newidcard.ToString();
+            }
+            return idcard;
+        }
+
+        static void TestAny(string name)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                DateTime dt = DateTime.Parse(name);
+                dt = dt.AddDays(i);
+                GetUrlResult(dt);
+            }
+            Console.WriteLine("执行完成");
+            //string[] namelist= name.Split('-');
+            //switch (int.Parse(namelist[1])) {
+            //    case 1:
+            //    case 3:
+            //    case 5:
+            //    case 7:
+            //    case 8:
+            //    case 10:
+            //    case 12:
+            //        for (int i = 0; i < 32; i++)
+            //        {
+            //            DateTime dt = DateTime.Parse(name);
+            //            dt =dt.AddDays(i);
+            //            GetUrlResult(dt);
+            //        }
+            //        break;
+            //    case 2:
+            //        for (int i = 0; i < 30; i++)
+            //        {
+            //            DateTime dt = DateTime.Parse(name);
+            //            dt = dt.AddDays(i);
+            //            GetUrlResult(dt);
+            //        }
+            //        break;
+            //    case 4:
+            //    case 6:
+            //    case 9:
+            //    case 11:
+            //        for (int i = 0; i < 31; i++)
+            //        {
+            //            DateTime dt = DateTime.Parse(name);
+            //            dt = dt.AddDays(i);
+            //            GetUrlResult(dt);
+            //        }
+            //        break;
+            //    default:
+            //        Console.WriteLine("入参日期错误");
+            //        return;
+            //}
+
+            //md5
+            //Console.WriteLine(GetMd5("aaaaa")); 
+
+            //double计算除法，保留3位小数，转decimal
+            //double a = 98923.23342;
+            //a= (double)Math.Round(a * 100) / 100;
+            //decimal b = decimal.Parse(a.ToString());
+            //double b = (double)Math.Round((double)(19888888 / 1000) * 1000 / 1000);
+            //Console.WriteLine(b);
+
+            //int halflength = name.Substring(0, name.Length / 2).Length;
+            //if (halflength > 5)
+            //{
+            //    name = name.Replace(name.Substring(name.Length / 2 - 5, 5), "*****");
+            //}
+            //else
+            //{
+            //    name = name.Replace(name.Substring(0, 5), "*****");
+            //}
+            //Console.WriteLine(name);
+
             //string inputa = Console.ReadLine();
-
-            //string outputa = TestDatetime("2019-03-29 11:59:59", "2019-03-20 11:59:59");
-
+            //string outputa = TestDatetime("2019-08-11 23:59:59", "2019-08-11 17:00:00");
+            //int expireDays = 0;
+            //string outputa = GetStartDate(30, "2019-08-20 17:59:59", out expireDays);
             //Console.WriteLine(outputa);
+            //Console.WriteLine(expireDays);
 
             //string a = "";
             //string b = a ?? "1";//!string.IsNullOrEmpty(a) ? a : "1";
@@ -63,7 +187,7 @@ namespace TestProject
             //Console.WriteLine(bb);
             //Console.WriteLine("成功");
 
-            Console.WriteLine(DateTime.Now.ToString("HHmm"));
+            //Console.WriteLine(DateTime.Now.ToString("HHmm"));
             //for (int i = 0; i < 100; i++)
             //{
             //    Task.Factory.StartNew(() =>
@@ -76,6 +200,49 @@ namespace TestProject
             //        Console.WriteLine(m);
             //    });
             //}
+        }
+
+        static void GetUrlResult(DateTime startdt)
+        {
+            //Task.Delay(TimeSpan.FromMilliseconds(1000));
+            //string strurl = string.Format("http://www.baidu.com?startdate={0}&enddate={1}", startdt.ToString("yyyy-MM-dd"), startdt.AddDays(1).ToString("yyyy-MM-dd")); ;
+            string strurl = string.Format("http://114.118.27.21:5099/api/statistics/agentstatistics?startdate={0}&enddate={1}", startdt.ToString("yyyy-MM-dd"), startdt.AddDays(1).ToString("yyyy-MM-dd"));
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var clientResult = client.GetAsync(strurl).Result;
+                    if (clientResult.IsSuccessStatusCode)
+                    {
+                        var a = clientResult.Content.ReadAsStringAsync();
+                        Console.WriteLine(a.Result + "请求成功" + strurl);
+                    }
+                    else
+                    {
+                        Console.WriteLine("请求失败" + strurl);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("请求异常" + strurl);
+            }
+        }
+
+        static string GetMd5(string message)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(message);
+                byte[] md5Bytes = md5.ComputeHash(bytes);
+                foreach (byte item in md5Bytes)
+                {
+                    stringBuilder.Append(item.ToString("x2"));
+                }
+            }
+            return stringBuilder.ToString();
+
         }
 
 
@@ -101,6 +268,7 @@ namespace TestProject
         /// <returns></returns>
         public static int GetDayMinus(DateTime dateTime1, DateTime dateTime2)
         {
+            //dateTime2 = DateTime.Parse("2019-08-11 23:03:00");
             TimeSpan ts = dateTime1 - dateTime2;
             if (ts.Days == 0)
             {
@@ -111,6 +279,67 @@ namespace TestProject
             }
             return ts.Days;
         }
+
+        private static string GetStartDate(int expireNum, string expiretime, out int expireDays)
+        {
+            expireDays = 0;
+            //如果到期查询时间为空，则取明天，到期天数也返回0
+            if (string.IsNullOrEmpty(expiretime))
+            {
+                return DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+            }
+            //到期时间
+            string startdatetime = expiretime;//续保赋值到期
+            DateTime expiredt = DateTime.Parse(expiretime);
+
+            //计算到期时间
+            TimeSpan ts = expiredt - DateTime.Now; //DateTime.Parse("2019-08-11 23:03:00");//
+            //ts.Days的范围都是>=0
+            expireDays = ts.Days;
+            if (ts.Days == 0)
+            {
+                //if (expiredt < DateTime.Now)
+                { }
+                //脱保，取明天
+                //正好当天续保期，取明天
+                expireDays = 1;
+                startdatetime = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+
+            }
+            else
+            {
+                //ts.Days>0
+                if (ts.Days > expireNum)
+                {
+                    //续保期外，不投保
+                    startdatetime = string.Empty;
+                }
+                else
+                {
+                    //续保期内，取第二天
+                    startdatetime = expiredt.AddDays(1).ToString("yyyy-MM-dd");
+                }
+            }
+            #region 原来的逻辑，会漏掉一些数据，刚在续保期当天的数据就直接过滤了
+            //if (expiredt < DateTime.Now)
+            //{
+            //    //脱保，取明天
+            //    startdatetime = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+            //}
+            //else if (DateTime.Now.AddDays(expireNum) < expiredt)
+            //{
+            //    //续保期外，不投保
+            //    startdatetime = string.Empty;
+            //}
+            //else
+            //{
+            //    //续保期内，取第二天
+            //    startdatetime = expiredt.AddDays(1).ToString("yyyy-MM-dd");
+            //}
+            #endregion
+            return startdatetime;
+        }
+
         /// <summary>
         /// 小数转换
         /// </summary>
