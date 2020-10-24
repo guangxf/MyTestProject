@@ -61,6 +61,7 @@
     <Compile Include="StringCompare\CompareService.cs" />
     <Compile Include="StringCompare\StringBuilderClass.cs" />
     <Compile Include="StringCompare\StringClass.cs" />
+    <Compile Include="TempService\BatchInterfaces.cs" />
     <Compile Include="TempService\TempTestService.cs" />
     <Compile Include="ViewModel\JsonModel.cs" />
     <Compile Include="WebApiTest\WebApiGet.cs" />

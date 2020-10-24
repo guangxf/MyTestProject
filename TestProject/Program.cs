@@ -27,8 +27,8 @@ namespace TestProject
 
         static void Main(string[] args)
         {
-            string strread = Console.ReadLine();
-            TestAny(strread);
+            //string strread = Console.ReadLine();
+            //TestAny(strread);
             #region 调用
             //WebApiGet.TestGetReInfo();
             //TestAny("百科技公司");
@@ -51,6 +51,8 @@ namespace TestProject
             //Console.WriteLine(GetStarIdCard(1, "140724195803060119"));
             //Console.WriteLine(GetStarIdCard(1, "140724195803060"));
             #endregion
+            BatchInterfaces batchInterfaces = new BatchInterfaces();
+            batchInterfaces.Do();
             Console.ReadLine();
         }
 
@@ -86,7 +88,7 @@ namespace TestProject
 
         static void TestAny(string name)
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 100; i++)
             {
                 DateTime dt = DateTime.Parse(name);
                 dt = dt.AddDays(i);
