@@ -27,9 +27,28 @@ namespace TestProject
 
         static void Main(string[] args)
         {
+            #region 调用
+            ///================1
+            //string licenseno = "新-ABDJ";
+            ////var aa=licenseno.Substring(licenseno.Length - 1, 1);
+            //var aa = licenseno.Replace("-","");
+            //Console.WriteLine(aa);
             //string strread = Console.ReadLine();
             //TestAny(strread);
-            #region 调用
+            ///================2
+            //string strlitaibihuagent = "2668,189151";
+            //string[] litaibihuagent = null;
+            //if (!string.IsNullOrEmpty(strlitaibihuagent))
+            //{
+            //    litaibihuagent = strlitaibihuagent.Split(',');
+            //}
+            //int a = Array.IndexOf(litaibihuagent, "2668");
+            //int b = Array.IndexOf(litaibihuagent, "189151");
+            //int c = Array.IndexOf(null, "102");
+            //Console.WriteLine(a);
+            //Console.WriteLine(b);
+            //Console.WriteLine(c);
+            ///================3
             //WebApiGet.TestGetReInfo();
             //TestAny("百科技公司");
             //TestAny("百度科技公司");
@@ -50,10 +69,65 @@ namespace TestProject
             //TestAny("sunney company relation");
             //Console.WriteLine(GetStarIdCard(1, "140724195803060119"));
             //Console.WriteLine(GetStarIdCard(1, "140724195803060"));
+            ///=========================4
+            //string[] avarylist_data = new string[] { "1", "2", "3", "4" };
+            //string avadata = "[\"" + string.Join("\",\"", avarylist_data) + "\"]";
+            //string data = string.Format("{0}\"class\": \"CarInfo\", \"func\": \"InsuranceIns\", \"args\":{1}{2}", "{",avadata,"}");
+            //Console.WriteLine(data);
+            ///======================5
+            string a = UnicodeToString("\\uff01CRM\\u5ba2\\u6237\\u6863\\u6848\\u4e2d\\uff0c\\u8bf7\\u5148\\u5f55\\u5165\\u5ba2\\u6237\\u6863\\u6848\\uff01");
+            Console.WriteLine(a);
             #endregion
-            BatchInterfaces batchInterfaces = new BatchInterfaces();
-            batchInterfaces.Do();
+            //BatchInterfaces batchInterfaces = new BatchInterfaces();
+            //batchInterfaces.Do();
             Console.ReadLine();
+        }
+
+
+        /// <summary>  
+        /// Unicode字符串转为正常字符串  
+        /// </summary>  
+        /// <param name="srcText"></param>  
+        /// <returns></returns>  
+        public static string UnicodeToString(string srcText)
+        {
+            string dst = "";
+            string src = srcText;
+            int len = srcText.Length / 6;
+            for (int i = 0; i <= len - 1; i++)
+            {
+                string str = "";
+                if (!src.Substring(0,1).Equals("\\")) {
+                    int x = src.IndexOf("\\");
+                    dst +=src.Substring(0, x);
+                    src = src.Substring(x);
+                    continue;
+                }
+                str = src.Substring(0, 6).Substring(2);
+                src = src.Substring(6);
+                byte[] bytes = new byte[2];
+                bytes[1] = byte.Parse(int.Parse(str.Substring(0, 2), System.Globalization.NumberStyles.HexNumber).ToString());
+                bytes[0] = byte.Parse(int.Parse(str.Substring(2, 2), System.Globalization.NumberStyles.HexNumber).ToString());
+                dst += Encoding.Unicode.GetString(bytes);
+            }
+            return dst;
+        }
+        /// <summary>  
+        /// 字符串转为UniCode码字符串  
+        /// </summary>  
+        /// <param name="s"></param>  
+        /// <returns></returns>  
+        public static string StringToUnicode(string s)
+        {
+            char[] charbuffers = s.ToCharArray();
+            byte[] buffer;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < charbuffers.Length; i++)
+            {
+                buffer = System.Text.Encoding.Unicode.GetBytes(charbuffers[i].ToString());
+                sb.Append(String.Format("\\u{0:X2}{1:X2}", buffer[1], buffer[0]));
+            }
+            return sb.ToString();
         }
 
         public static string GetStarIdCard(int idtype, string idcard)
