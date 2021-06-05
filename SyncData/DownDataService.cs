@@ -19,7 +19,7 @@ namespace SyncData
             tonum = firstnum + lengthsearch + 1;
             string securl = $"Agent=2668&tName={tablename}&FromId={firstnum}&toId={tonum}";
             string seccode = securl.GetMd5();
-            string url = $"http://114.118.27.21:5099/api/http/BackDbToStatistic?{securl}&seccode={seccode}";            
+            string url = $"http:///api/http/BackDbToStatistic?{securl}&seccode={seccode}";            
             try
             {
                 using (var client = new HttpClient())
