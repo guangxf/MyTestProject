@@ -1,0 +1,11 @@
+[
+  {
+    "job-name": "DownDataJob",
+    "job-type": "TestCoreWeb.RecurringJobs.DownDataJob,TestCoreWeb",
+    "cron-expression": "0 20 0 * * ?",
+    //"timezone": "Asia/Shanghai",
+    "timezone": "China Standard Time",
+    "queue": "default",
+    "description": "≤‚ ‘÷¥––"
+  }
+]

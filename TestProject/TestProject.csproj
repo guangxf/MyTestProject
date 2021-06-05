@@ -63,6 +63,9 @@
     <Compile Include="StringCompare\StringClass.cs" />
     <Compile Include="TempService\BatchInterfaces.cs" />
     <Compile Include="TempService\TempTestService.cs" />
+    <Compile Include="TempService\TestOutRef.cs" />
+    <Compile Include="TempService\TestStuckClass.cs" />
+    <Compile Include="TestInterface\ITest.cs" />
     <Compile Include="ViewModel\JsonModel.cs" />
     <Compile Include="WebApiTest\WebApiGet.cs" />
   </ItemGroup>

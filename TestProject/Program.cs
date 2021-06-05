@@ -75,8 +75,39 @@ namespace TestProject
             //string data = string.Format("{0}\"class\": \"CarInfo\", \"func\": \"InsuranceIns\", \"args\":{1}{2}", "{",avadata,"}");
             //Console.WriteLine(data);
             ///======================5
-            string a = UnicodeToString("\\uff01CRM\\u5ba2\\u6237\\u6863\\u6848\\u4e2d\\uff0c\\u8bf7\\u5148\\u5f55\\u5165\\u5ba2\\u6237\\u6863\\u6848\\uff01");
-            Console.WriteLine(a);
+            //string a = UnicodeToString("\\uff01CRM\\u5ba2\\u6237\\u6863\\u6848\\u4e2d\\uff0c\\u8bf7\\u5148\\u5f55\\u5165\\u5ba2\\u6237\\u6863\\u6848\\uff01");
+            //Console.WriteLine(a);
+            ///==================
+            //初始化数据
+            //List<int> list = new List<int>();
+            //for (int i = 0; i < 11; i++)
+            //{
+            //    list.Add(i + 1);
+            //}
+
+            //#region 每3个数分隔，用99999分隔
+            //List<int> listnew = new List<int>();
+            //for (int i = 1; i <= list.Count / 3; i++)
+            //{
+            //    if (list.Count - i * 3 >= 0)
+            //    {
+            //        listnew.AddRange(list.Skip((i - 1) * 3).Take(3).ToList());
+            //        listnew.Add(99999);
+            //    }
+            //}
+            //int m = 3 * (list.Count / 3);
+            //listnew.AddRange(list.Skip(m).Take(list.Count - m).ToList());
+            //#endregion
+
+            ////展示结果
+            //foreach (var item in listnew)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //TestOutRef test = new TestOutRef();
+            TestStuckClass test = new TestStuckClass();
+            test.Test();
             #endregion
             //BatchInterfaces batchInterfaces = new BatchInterfaces();
             //batchInterfaces.Do();
@@ -97,9 +128,10 @@ namespace TestProject
             for (int i = 0; i <= len - 1; i++)
             {
                 string str = "";
-                if (!src.Substring(0,1).Equals("\\")) {
+                if (!src.Substring(0, 1).Equals("\\"))
+                {
                     int x = src.IndexOf("\\");
-                    dst +=src.Substring(0, x);
+                    dst += src.Substring(0, x);
                     src = src.Substring(x);
                     continue;
                 }
