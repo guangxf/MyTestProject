@@ -1,0 +1,804 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogEntity</name>
+    </assembly>
+    <members>
+        <member name="T:LogEntity.BHLog">
+            <summary>
+                壁虎日志 (保存到Span_xxx表中的模型)
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog._id">
+            <summary>
+                埋点时【无需赋值】
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.LogRootID">
+            <summary>
+            全链路主ID 
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.TraceID">
+            <summary>
+                埋点编号
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.ExecuteState">
+            <summary>
+                执行状态【成功 失败】
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.ExecuteLot">
+            <summary>
+                执行批次 用于排序
+            特殊业务：如核保，不能一次完成的业务，需要记录最后一个叶子的执行批次<see cref="P:LogEntity.BHLog.ExecuteLot"/>
+            方便后续继续记录，假如需要有日志续接的业务场景还需要提供埋点编号<see cref="P:LogEntity.BHLog.TraceID"/>
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.ExecuteElapsedTime">
+            <summary>
+                执行耗时
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.ErrMsg">
+            <summary>
+                错误信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.StackTraceMsg">
+            <summary>
+                错误堆栈信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.businessName">
+            <summary>
+                业务名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.companyName">
+            <summary>
+                保险公司名称【续保在此处赋值】
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.stepName">
+            <summary>
+                步骤名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.LogMsg">
+            <summary>
+                日志内容
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.createTime">
+            <summary>
+                创建时间
+            备注：3.0版本已弃用，老代码尽快更换 <see cref="P:LogEntity.BHLog.starTime"/> <see cref="P:LogEntity.BHLog.endTime"/>
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.starTime">
+            <summary>
+            步骤开始时间
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.endTime">
+            <summary>
+            步骤结束时间
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.inparameter">
+            <summary>
+                入参 (入库的是复杂结构)
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.outparameter">
+            <summary>
+                出参 (入库的是复杂结构)
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.channel">
+            <summary>
+                渠道信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.attach">
+            <summary>
+                附加信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.identification">
+            <summary>
+                执行标识
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.parentID">
+            <summary>
+                父级ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.DataIdentification">
+            <summary>
+                数据标识用于统计
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.parallelStep">
+            <summary>
+            是否为并行步骤
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLog.parallelTag">
+            <summary>
+            并行标记
+            </summary>
+        </member>
+        <member name="T:LogEntity.PersistenceBHLog">
+            <summary>
+            持久化模型
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog._id">
+            <summary>
+                埋点时【无需赋值】
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.LogRootID">
+            <summary>
+            全链路主ID 
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.TraceID">
+            <summary>
+                埋点编号
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.ExecuteState">
+            <summary>
+                执行状态【成功 失败】
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.ExecuteLot">
+            <summary>
+                执行批次 用于排序
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.ExecuteElapsedTime">
+            <summary>
+                执行耗时
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.ErrMsg">
+            <summary>
+                错误信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.StackTraceMsg">
+            <summary>
+                错误堆栈信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.businessName">
+            <summary>
+                业务名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.companyName">
+            <summary>
+                保险公司名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.stepName">
+            <summary>
+                步骤名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.LogMsg">
+            <summary>
+                日志内容
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.createTime">
+            <summary>
+                创建时间
+            备注：3.0版本已弃用，老代码尽快更换 <see cref="P:LogEntity.PersistenceBHLog.starTime"/> <see cref="P:LogEntity.PersistenceBHLog.endTime"/>
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.starTime">
+            <summary>
+            步骤开始时间
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.endTime">
+            <summary>
+            步骤结束时间
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.inparameter">
+            <summary>
+                入参 (入库的是复杂结构)
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.outparameter">
+            <summary>
+                出参 (入库的是复杂结构)
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.channel">
+            <summary>
+                渠道信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.attach">
+            <summary>
+                附加信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.identification">
+            <summary>
+                执行标识
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.parentID">
+            <summary>
+                父级ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.DataIdentification">
+            <summary>
+                数据标识用于统计
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.parallelStep">
+            <summary>
+            是否为并行步骤
+            </summary>
+        </member>
+        <member name="P:LogEntity.PersistenceBHLog.parallelTag">
+            <summary>
+            并行标记
+            </summary>
+        </member>
+        <member name="T:LogEntity.BHLogRoot">
+            <summary>
+             壁虎日志根节点
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot._id">
+            <summary>
+                mongo _id
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.LogRootID">
+            <summary>
+            全链路主ID 
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.Node">
+            <summary>
+            节点，业务流程的那个环节例如（前端、接口、中心、保险小组）,预设
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.EntryPoint">
+            <summary>
+            业务的发起点(前端,或者接口) ,区分入口请使用这个 2018-12-26
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot._TID">
+            <summary>
+                埋点编号不要手动赋值，内部初始化已完成赋值操作
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.businessName">
+            <summary>
+                业务名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.CompanyName">
+            <summary>
+                保险公司名称【续保在此处赋值】
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.CityName">
+            <summary>
+                城市名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.UKeyId">
+            <summary>
+                UKeyId
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.Channel">
+            <summary>
+                渠道信息
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.license_no">
+            <summary>
+                车牌号
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.vin_no">
+            <summary>
+                车架号
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.engine_no">
+            <summary>
+                发动机号
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.RegisterDate">
+            <summary>
+            初登日期
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.MoldName">
+            <summary>
+            品牌型号
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.bx_userinfo_ID">
+            <summary>
+                bx_userinfo.ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.AgentId">
+            <summary>
+                经纪人ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.TopAgentId">
+            <summary>
+            顶级经纪人ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.VehicleName">
+            <summary>
+                品牌名称
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.AutoModelCode">
+            <summary>
+                精友码
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.Policy">
+            <summary>
+                保单号 
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.SpanCount">
+            <summary>
+            叶子数量
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.wxid">
+            <summary>
+            微营销 微信ID
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.createDate">
+            <summary>
+                创建时间
+            备注：3.0版本已弃用，老代码尽快更换 <see cref="P:LogEntity.BHLogRoot.starTime"/> <see cref="P:LogEntity.BHLogRoot.endTime"/>
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.totalTime">
+            <summary>
+                全程耗时，不要手动赋值，函数内部自行计算
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.timestamp">
+            <summary>
+                创建时间【时间戳】
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.starTime">
+            <summary>
+            步骤开始时间
+            </summary>
+        </member>
+        <member name="P:LogEntity.BHLogRoot.endTime">
+            <summary>
+            步骤结束时间
+            </summary>
+        </member>
+        <member name="T:LogEntity.lib.AppendLogTraceManner">
+            <summary>
+            已知根节点或日志接续上面埋点
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.__LOG">
+            <summary>
+            日志记录对象
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.__SpanNodes">
+            <summary>
+            叶子节点
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.CacheContext">
+            <summary>
+            线程安装缓存
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.AppendLogTraceManner.OffsetExecuteLot">
+            <summary>
+            生成请求批次编号,默认0,根据实际业务需要进行递增
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.FatalState">
+            <summary>
+            是否发生过错误
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.CompletedSpanNodeStatus">
+            <summary>
+            叶子提交状态
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.AppendLogTraceManner.seed">
+            <summary>
+            并行递增种子
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.AppendLogTraceManner.submitLock">
+            <summary>
+            数据提交锁
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.AppendLogTraceManner.parallelLock">
+            <summary>
+            并发锁
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.AppendLogTraceManner.TraceID">
+            <summary>
+            根节点编号
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.#ctor(System.Action{System.String},System.String)">
+            <summary>
+            初始化埋点辅助类
+            </summary>
+            <param name="logAction">日志记录委托</param>
+            <param name="persistenceSeedStr">持久化埋点种子 <see cref="M:LogEntity.lib.NewLogTrackManner.PersistenceSeed"/></param>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.MakeSpan">
+            <summary>
+            日志叶子初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.MakeParallelSpan(System.Int32)">
+            <summary>
+            并行日志叶子初始化
+            </summary>
+            <param name="parallelTag">并行标记，同一组并行使用相同的并行标记</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.Cancel">
+            <summary>
+            执行过程出错，日志进行最终处理
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.CompletedSpanNode">
+            <summary>
+            所有步骤执行完成
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.RequestID">
+            <summary>
+            生成下一个日志叶子编号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.AppendLogTraceManner.TimeConsumingStatistics">
+            <summary>
+            耗时统计
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.AspectExtensions.Log(LogEntity.lib.AspectF,LogEntity.BHLog,LogEntity.lib.LogTrackManner)">
+            <summary>
+            日志记录
+            </summary>
+            <param name="aspect"></param>
+            <param name="_BHLog"></param>
+            <param name="manner">管理上下文</param>
+            <returns></returns>
+        </member>
+        <member name="T:LogEntity.lib.LogTrackManner">
+            <summary>
+                壁虎科技日志3.0埋点辅助
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.LogTrackManner.AppendContext">
+            <summary>
+            已知根节点，追加模式上下文
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.LogTrackManner.NewContext">
+            <summary>
+            新埋点上下文
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.LogTrackManner.DELIMITER">
+            <summary>
+            定界符
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.LogTrackManner.#ctor(System.Action{System.String},LogEntity.lib.TracePattern,System.String)">
+            <summary>
+            初始化埋点辅助类
+            </summary>
+            <param name="logAction">日志记录委托</param>
+            <param name="pattern">模式，当模式为<see cref="F:LogEntity.lib.TracePattern.Append"/>时，<see cref="!:persistenceSeedStr"/> 必须赋值</param>
+            <param name="persistenceSeedStr">持久化埋点种子 <see cref="M:LogEntity.lib.NewLogTrackManner.PersistenceSeed"/></param>
+        </member>
+        <member name="M:LogEntity.lib.LogTrackManner.Cancel">
+            <summary>
+            执行过程出错，日志进行最终处理
+            </summary>
+        </member>
+        <member name="T:LogEntity.lib.TracePattern">
+            <summary>
+            日志模式
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.TracePattern.New">
+            <summary>
+            新埋点
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.TracePattern.Append">
+            <summary>
+            已存在日志，追加模式
+            </summary>
+        </member>
+        <member name="T:LogEntity.lib.NewLogTrackManner">
+            <summary>
+                新日志埋点
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.__LOG">
+            <summary>
+            日志记录对象
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.__TraceNode">
+            <summary>
+            根节点
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.__SpanNodes">
+            <summary>
+            叶子节点
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.CacheContext">
+            <summary>
+            线程安装缓存
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.NewLogTrackManner.OffsetExecuteLot">
+            <summary>
+            生成请求批次编号,默认0,根据实际业务需要进行递增
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.FatalState">
+            <summary>
+            是否发生过错误
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.CompletedAllStatus">
+            <summary>
+            全部提交状态
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.CompletedTraceNodeStatus">
+            <summary>
+            根提交状态
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.NewLogTrackManner.CompletedSpanNodeStatus">
+            <summary>
+            叶子提交状态
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.NewLogTrackManner.seed">
+            <summary>
+            并行递增种子
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.NewLogTrackManner.submitLock">
+            <summary>
+            数据提交锁
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.NewLogTrackManner.parallelLock">
+            <summary>
+            并发锁
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.#ctor(System.Action{System.String})">
+            <summary>
+            初始化埋点辅助类
+            </summary>
+            <param name="logAction">日志记录委托</param>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.GetTraceNode">
+            <summary>
+            获取根节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.PersistenceSeed">
+            <summary>
+            持久化埋点种子
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.MakeTrace">
+            <summary>
+            日志根初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.MakeSpan">
+            <summary>
+            日志叶子初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.MakeParallelSpan(System.Int32)">
+            <summary>
+            并行日志叶子初始化
+            </summary>
+            <param name="parallelTag">并行标记，同一组并行使用相同的并行标记</param>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.Cancel">
+            <summary>
+            执行过程出错，日志进行最终处理
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.CompletedAll">
+            <summary>
+            所有步骤执行完成
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.CompletedTraceNode">
+            <summary>
+            提交根节点
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.CompletedSpanNode">
+            <summary>
+            所有步骤执行完成
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.RequestID">
+            <summary>
+            生成下一个日志叶子编号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.NewLogTrackManner.TimeConsumingStatistics">
+            <summary>
+            耗时统计
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LogEntity.lib.TraceException">
+            <summary>
+            埋点异常
+            </summary>
+        </member>
+        <member name="T:LogEntity.lib.UnStructuredLogTrackManner">
+            <summary>
+                壁虎科技日志3.0埋点辅助
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.UnStructuredLogTrackManner.__LOG">
+            <summary>
+            日志记录对象
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.UnStructuredLogTrackManner.__SpanNodes">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="P:LogEntity.lib.UnStructuredLogTrackManner.CompletedAllStatus">
+            <summary>
+            全部提交状态
+            </summary>
+        </member>
+        <member name="F:LogEntity.lib.UnStructuredLogTrackManner.submitLock">
+            <summary>
+            数据提交锁
+            </summary>
+        </member>
+        <member name="M:LogEntity.lib.UnStructuredLogTrackManner.#ctor(System.Action{System.String})">
+            <summary>
+            初始化埋点辅助类
+            </summary>
+            <param name="logAction">日志记录委托</param>
+        </member>
+        <member name="M:LogEntity.lib.UnStructuredLogTrackManner.MakeLog(System.String)">
+            <summary>
+            创建日志节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.lib.UnStructuredLogTrackManner.Completed">
+            <summary>
+            所有步骤执行完成
+            </summary>
+        </member>
+        <member name="T:LogEntity.UnStructuredLog">
+            <summary>
+             非结构化日志
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog._id">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog._tid">
+            <summary>
+            日志编号
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog._relation">
+            <summary>
+            关联编号
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog.Keys">
+            <summary>
+            索引字段
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:LogEntity.UnStructuredLog.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="F:LogEntity.UnStructuredLog.MaxKeysLen">
+            <summary>
+            索引字段至多10个
+            </summary>
+        </member>
+        <member name="M:LogEntity.UnStructuredLog.SetRelation(System.String)">
+            <summary>
+            关联字段
+            </summary>
+            <param name="relation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.UnStructuredLog.SetKeys(System.String[])">
+            <summary>
+            索引字段
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogEntity.UnStructuredLog.SetContent(System.String)">
+            <summary>
+            日志内容
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
