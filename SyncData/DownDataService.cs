@@ -15,11 +15,11 @@ namespace SyncData
     {
         public int Download(ILog log, long firstnum, long lengthsearch, out long tonum)
         {
-            string tablename = "carinfo";
+            string tablename = "car_renewal";
             tonum = firstnum + lengthsearch + 1;
-            string securl = $"Agent=2668&tName={tablename}&FromId={firstnum}&toId={tonum}";
+            string securl = $"Agent=102&tName={tablename}&FromId={firstnum}&toId={tonum}";
             string seccode = securl.GetMd5();
-            string url = $"http:///api/http/BackDbToStatistic?{securl}&seccode={seccode}";            
+            string url = $"http:// /api/http/BackDbToStatistic?{securl}&seccode={seccode}";            
             try
             {
                 using (var client = new HttpClient())
@@ -38,7 +38,7 @@ namespace SyncData
                             count = db.InsertCarinfo(log, list);
                             return count;
                         }
-                        if (tablename.Equals("carrenewal"))
+                        if (tablename.Equals("car_renewal"))
                         {
                             Carrenewal a = JsonConvert.DeserializeObject<Carrenewal>(result);
                             List<bx_car_renewal> list = a.Data;

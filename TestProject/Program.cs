@@ -106,11 +106,15 @@ namespace TestProject
             //}
 
             //TestOutRef test = new TestOutRef();
-            TestStuckClass test = new TestStuckClass();
-            test.Test();
+            //TestStuckClass test = new TestStuckClass();
+            //test.Test();
             #endregion
             //BatchInterfaces batchInterfaces = new BatchInterfaces();
             //batchInterfaces.Do();
+
+            #region 测试枚举
+            Console.WriteLine($"{var1.Jike},{var1.Mike},{var1.Nike}");
+            #endregion
             Console.ReadLine();
         }
 
@@ -597,5 +601,10 @@ namespace TestProject
         {
             public string side { get; set; }
         }
+
+        public enum var1 { Mike = 100,Nike = 102,Jike }
+        public enum var2 { Mike = 100,Nike,Jike }
+        public enum var3 { Mike = -1,Nike,Jike }
+        public enum var4 { Mike,Nike,Jike }
     }
 }
