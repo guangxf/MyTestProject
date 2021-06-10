@@ -13,6 +13,14 @@ namespace SyncData
 {
     public class DownDataService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="firstnum"></param>
+        /// <param name="lengthsearch"></param>
+        /// <param name="tonum"></param>
+        /// <returns></returns>
         public int Download(ILog log, long firstnum, long lengthsearch, out long tonum)
         {
             string tablename = "car_renewal";
