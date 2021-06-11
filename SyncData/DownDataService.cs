@@ -25,9 +25,11 @@ namespace SyncData
         {
             string tablename = "car_renewal";
             tonum = firstnum + lengthsearch + 1;
-            string securl = $"Agent=102&tName={tablename}&FromId={firstnum}&toId={tonum}";
+            long now = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
+            string urlper= $"Agent=102&TName={tablename}&FromId={firstnum}&ToId={tonum}&UniversalTime={now}";
+            string securl = $"Agent=102&tNaMe={tablename}&FroMId={firstnum}&toId={tonum}&UniversalTiMe={now}";
             string seccode = securl.GetMd5();
-            string url = $"http:// /api/http/BackDbToStatistic?{securl}&seccode={seccode}";            
+            string url = $"http://localhost:55211/api/http/BackDbToStatistic?{urlper}&seccode={seccode}";            
             try
             {
                 using (var client = new HttpClient())
