@@ -183,5 +183,23 @@ namespace SyncData.Models
         private string? _IsQuoteRepeat;
         public string? IsQuoteRepeat { get { if (string.IsNullOrEmpty(_IsQuoteRepeat)) return "0"; else { return _IsQuoteRepeat; } } set { _IsQuoteRepeat = value; } }
         public string OrganizationCode { get; set; }
+        private string? _PricingRate;
+        public string? PricingRate { get { if (string.IsNullOrEmpty(_PricingRate)) return "0"; else { return _PricingRate; } } set { _PricingRate = value; } }
+        //public double YongYaoSanZhe { get; set; }
+        //public double YongYaoSiJi { get; set; }
+        //public double YongYaoChengKe { get; set; }
+        //public double ZengZhiJiuYuan { get; set; }
+        //public string ZengZhiAnJian { get; set; }
+        //public double ZengZhiDaiJia { get; set; }
+        //public double ZengZhiSongJian { get; set; }
+        //public double CheLunSunShi { get; set; }
+        //public double FaDongJiSunHuaiChuWai { get; set; }
+        //public double MianPeiCheSun { get; set; }
+        //public double MianPeiSanZhe { get; set; }
+        //public double MianPeiSiJi { get; set; }
+        //public double MianPeiChengKe { get; set; }
+        //public double JingShenSanZhe { get; set; }
+        //public double JingShenSiJi { get; set; }
+        //public double JingShenChengKe { get; set; }
     }
 }

@@ -24,9 +24,9 @@ namespace SyncData
             long tonum = 0;
             string logstr = string.Empty;
             DownDataService downDataService;
-            const int lengthsearch = 5000;//每次查询长度500条，库里的id是单双跳着走的，实际250条。
+            const int lengthsearch = 50;//每次查询长度500条，库里的id是单双跳着走的，实际250条。
             int doinsert = 0;
-            for (long i = 0; i < 1000000; i = i + lengthsearch)
+            for (long i = 1000; i < 1000000; i = i + lengthsearch)
             //carinfo调用到 118880001
             //for (long i = 118730000; i < 118740001; i = i + lengthsearch)
             {
